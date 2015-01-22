@@ -1,0 +1,10 @@
+#!/bin/bash
+dropboxes=".dropbox-pfix .dropbox-jimdo"
+for dropbox in $dropboxes
+do
+    HOME="/home/$USER"
+    HOME="$HOME/$dropbox"
+    export HOME
+    echo -n "$dropbox: "
+    $HOME/.dropbox-dist/dropbox status
+done

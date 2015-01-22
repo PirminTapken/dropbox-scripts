@@ -1,0 +1,16 @@
+#!/bin/bash
+dropboxes=".dropbox-pfix .dropbox-jimdo"
+for dropbox in $dropboxes
+do
+    echo "Start dropbox $dropbox"
+    HOME="/home/$USER"
+    if ! [ -d "$HOME/$dropbox" ]
+    then
+        mkdir "$HOME/$dropbox" 2> /dev/null
+        ln -s "$HOME/.Xauthority" "$HOME/$dropbox/" 2> /dev/null
+    fi
+    HOME="$HOME/$dropbox"
+    export HOME
+    $HOME/.dropbox-dist/dropboxd 2> /dev/null &
+    echo "started dropbox for $dropbox"
+done
