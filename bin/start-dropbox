@@ -1,5 +1,5 @@
 #!/bin/bash
-dropboxes=".dropbox-pfix .dropbox-jimdo"
+source "$HOME/.config/dropbox-scripte.conf"
 for dropbox in $dropboxes
 do
     echo "Start dropbox $dropbox"
