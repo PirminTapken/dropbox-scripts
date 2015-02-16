@@ -6,5 +6,6 @@ do
     HOME="$HOME/$dropbox"
     export HOME
     echo -n "$dropbox: "
-    $HOME/.dropbox-dist/dropbox status
+    #DROPBOX_BIN=${HOME}/.dropbox-dist/$(ls ${HOME}/.dropbox-dist | grep dropbox-lnx)/dropbox
+    python2 $(which dropbox.py) status
 done
