@@ -11,6 +11,6 @@ do
     fi
     HOME="$HOME/$dropbox"
     export HOME
-    $HOME/.dropbox-dist/dropboxd 2> /dev/null &
+    dropbox start >/dev/null 2>&1 &
     echo "started dropbox for $dropbox"
 done
