@@ -1,7 +1,6 @@
 #!/bin/bash
-source "$HOME/.config/dropbox-scripte.conf"
-for dropbox in $dropboxes
-do
+main() {
+    dropbox="$1"
     echo "Start dropbox $dropbox"
     HOME="/home/$USER"
     if ! [ -d "$HOME/$dropbox" ]
@@ -9,8 +8,11 @@ do
         mkdir "$HOME/$dropbox" 2> /dev/null
         ln -s "$HOME/.Xauthority" "$HOME/$dropbox/" 2> /dev/null
     fi
-    HOME="$HOME/$dropbox"
-    export HOME
-    dropbox start >/dev/null 2>&1 &
+    export HOME="$HOME/$dropbox"
+    ~/.dropbox-dist/dropboxd &
     echo "started dropbox for $dropbox"
-done
+}
+
+path=$(dirname $0)
+root=$(dirname $path)
+source $root/lib/dropbox.sh

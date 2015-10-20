@@ -1,11 +1,13 @@
 #!/bin/bash
-source "$HOME/.config/dropbox-scripte.conf"
-for dropbox in $dropboxes
-do
+main() {
+    dropbox="$1"
     HOME="/home/$USER"
     HOME="$HOME/$dropbox"
     export HOME
     echo -n "$dropbox: "
-    #DROPBOX_BIN=${HOME}/.dropbox-dist/$(ls ${HOME}/.dropbox-dist | grep dropbox-lnx)/dropbox
     python2 $(which dropbox.py) status
-done
+}
+
+path=$(dirname $0)
+root=$(dirname $path)
+source $root/lib/dropbox.sh
