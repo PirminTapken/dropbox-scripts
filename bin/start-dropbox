@@ -1,4 +1,7 @@
 #!/bin/bash
+
+root="$(dirname $0)/.."
+
 main() {
     dropbox="$1"
     echo "Start dropbox $dropbox"
@@ -7,12 +10,11 @@ main() {
     then
         mkdir "$HOME/$dropbox" 2> /dev/null
         ln -s "$HOME/.Xauthority" "$HOME/$dropbox/" 2> /dev/null
+        cp -r /home/$USER/.dropbox-dist $HOME/$dropbox/.dropbox-dist
     fi
     export HOME="$HOME/$dropbox"
     ~/.dropbox-dist/dropboxd &
     echo "started dropbox for $dropbox"
 }
 
-path=$(dirname $0)
-root=$(dirname $path)
 source $root/lib/dropbox.sh
